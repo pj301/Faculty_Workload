@@ -444,4 +444,259 @@ Class Action {
 			return 1;
 
 	}
+	public function save_room() {
+        extract($_POST);
+        $data = " roomCODE = '$roomCODE' ";
+        $data .= ", rm_buildingName = '$rm_buildingName' ";
+        $data .= ", rm_Desc = '$rm_Desc' ";
+        $data .= ", rm_type = '$rm_type' ";
+        $data .= ", rm_floor = '$rm_floor' ";
+
+        $chk = $this->db->query("SELECT * FROM room where roomCODE = '$roomCODE' and roomCODE != '$id'")->num_rows;
+        if ($chk > 0) {
+            return 2; // Room code already exists
+            exit;
+        }
+
+        if (empty($id)) {
+            $save = $this->db->query("INSERT INTO room set " . $data);
+        } else {
+            $save = $this->db->query("UPDATE room set " . $data . " where roomCODE = " . $id);
+        }
+
+        if ($save) {
+            return 1; // Success
+        }
+    }
+
+    public function delete_room() {
+        extract($_POST);
+        $delete = $this->db->query("DELETE FROM room where roomCODE = " . $id);
+        if ($delete) {
+            return 1; // Success
+        }
+    }
+
+	
+    public function save_term() {
+        // Implementation for saving term data
+        // This method should handle the data received from the AJAX request and interact with the database accordingly.
+        // Ensure that it returns a meaningful response, such as success or an error message.
+
+        // Example (replace this with your actual implementation):
+		$termName=$_POST['termName'];
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+
+        // Validate and sanitize input data if necessary
+
+        // Perform the database operation (insert/update)
+        // Replace the following line with your database operation:
+        $result = $this->perform_database_operation($termName, $startDate, $endDate);
+
+        if ($result) {
+            // Successful operation
+            return '1';
+        } else {
+            // Failed operation
+            return 'Error: Something went wrong.';
+        }
+    }
+
+	private function perform_database_operation($termName, $startDate, $endDate) {
+        // Implement the actual database operation here
+        // This function should interact with your database to save the term data.
+
+        // Example (replace this with your actual database operation):
+        $query = "INSERT INTO term (termName, startDate, endDate) VALUES ('$termName','$startDate', '$endDate')";
+        $result = $this->db->query($query);
+
+        return $result;
+    }
+
+
+    public function delete_term()
+    {
+        extract($_POST);
+        $delete = $this->db->query("DELETE FROM term WHERE termID = $id");
+        if ($delete) {
+            return 1; // Success
+        } else {
+            return 0; // Failed
+        }
+    }
+		public function get_term(){
+		$data = array();
+		$qry = $this->db->query("SELECT * FROM term");
+		while ($row = $qry->fetch_assoc()) {
+			$data[] = $row;
+		}
+		return json_encode($data);
+	}
+	
+	
+	public function add_college($college_name) {
+		// Use prepared statements to prevent SQL injection
+		$chkStmt = $this->db->prepare("SELECT * FROM colleges WHERE col_name = ?");
+		$chkStmt->bind_param("s", $college_name);
+		$chkStmt->execute();
+		$chkStmt->store_result();
+		$chk = $chkStmt->num_rows;
+		$chkStmt->close();
+	
+		if ($chk > 0) {
+			return 2; // College name already exists
+		}
+	
+		// Use prepared statements to prevent SQL injection
+		$saveStmt = $this->db->prepare("INSERT INTO colleges (col_name) VALUES (?)");
+		$saveStmt->bind_param("s", $college_name);
+	
+		$save = $saveStmt->execute();
+	
+		if ($save) {
+			return 1; // Success
+		} else {
+			// Return the error message for debugging
+			return "Error: " . $this->db->error;
+		}
+	}
+	
+    
+    public function delete_college() {
+        extract($_POST);
+        $delete = $this->db->query("DELETE FROM colleges where col_ID = '$id'");
+        if ($delete) {
+            return 1; // Success
+        }
+    }
+
+    public function save_class($year_level) {
+        extract($_POST);
+
+        // Validate and sanitize input data if necessary
+
+        // Check if the combination of year_level and section already exists
+        $chk = $this->db->query("SELECT * FROM class WHERE year_level = '$year_level' AND section = '$section' AND class_ID != '$id'")->num_rows;
+        if ($chk > 0) {
+            return 2; // Class already exists
+        }
+
+        // If the id is empty, it's a new entry, so insert the data
+        if (empty($id)) {
+            $save = $this->db->query("INSERT INTO class (year_level, section) VALUES ('$year_level', '$section')");
+        } else {
+            // If the id is not empty, it's an update, so update the existing data
+            $save = $this->db->query("UPDATE class SET year_level = '$year_level', section = '$section' WHERE class_ID = '$id'");
+        }
+
+        if ($save) {
+            return 1; // Success
+        } else {
+            return 0; // Error
+        }
+    }
+
+    public function delete_class() {
+        extract($_POST);
+        $delete = $this->db->query("DELETE FROM class where class_ID = '$id'");
+        if ($delete) {
+            return 1; // Success
+        }
+    }
+
+    public function get_class() {
+        $data = array();
+        $qry = $this->db->query("SELECT * FROM class");
+        while ($row = $qry->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return json_encode($data);
+    }
+	function save_program() {
+
+
+        // Extract POST data and handle default values
+        $id = isset($_POST['prog_ID']) ? $_POST['prog_ID'] : '';
+        $prog_code = mysqli_real_escape_string($db, $_POST['prog_code']);
+        $prog_name = mysqli_real_escape_string($db, $_POST['prog_name']);
+        $col_ID = isset($_POST['col_ID']) ? $_POST['col_ID'] : '';
+        $sub_code = isset($_POST['sub_code']) ? $_POST['sub_code'] : null; // Set to null if not provided
+
+        // Validate and sanitize input data if necessary
+
+        // Check if the sub_code exists in the subjects table
+        if (!empty($sub_code)) {
+            $check_sub_query = $db->query("SELECT * FROM subjects WHERE sub_code = '$sub_code'");
+            if ($check_sub_query->num_rows == 0) {
+                echo 'Error: The specified subject code does not exist.';
+                return;
+            }
+        }
+
+        if (empty($id)) {
+            $query = "INSERT INTO program (col_ID, prog_code, prog_name, sub_code) VALUES ('$col_ID', '$prog_code', '$prog_name', " . ($sub_code ? "'$sub_code'" : 'NULL') . ")";
+        } else {
+            $query = "UPDATE program SET col_ID='$col_ID', prog_code='$prog_code', prog_name='$prog_name', sub_code=" . ($sub_code ? "'$sub_code'" : 'NULL') . " WHERE prog_ID=$id";
+        }
+
+        $result = $conn->query($query);
+
+        if ($result) {
+            echo '1'; // Success
+        } else {
+            echo 'Error: ' . $db->error;
+        }
+    }
+
+	public function delete_program() {
+        extract($_POST);
+        $delete = $this->db->query("DELETE FROM program where prog_ID = '$id'");
+        if ($delete) {
+            return 1; // Success
+        }
+    }
+	public function add_class() {
+        extract($_POST);
+        $check = $this->db->query("SELECT * FROM class WHERE class_name = '$class_name' ")->num_rows;
+        if($check > 0){
+            return 2; // Class name already exists
+        }
+
+        $save = $this->db->query("INSERT INTO class SET class_name = '$class_name' ");
+        if ($save) {
+            return 1; // Success
+        }
+    }
+	// admin_class.php
+
+	public function add_subject_to_program($programID, $subCode) {
+        // Use prepared statements to prevent SQL injection
+        $stmt = $this->db->prepare("INSERT INTO program_subjects (prog_ID, sub_code) VALUES (?, ?)");
+        $stmt->bind_param("ss", $programID, $subCode);
+
+        if ($stmt->execute()) {
+            $stmt->close();
+            return 1; // Success
+        } else {
+            return "Error: " . $this->db->error;
+        }
+    }
+public function delete_subject_from_program($programID, $subCode) {
+    // Use prepared statements to prevent SQL injection
+    $stmt = $this->db->prepare("DELETE FROM program_subjects WHERE prog_ID = ? AND sub_code = ?");
+    $stmt->bind_param("ss", $programID, $subCode);
+
+    $delete = $stmt->execute();
+
+    if ($delete) {
+        return 1; // Success
+    } else {
+        // Return the error message for debugging
+        return "Error: " . $stmt->error;
+    }
 }
+
+	
+}
+	

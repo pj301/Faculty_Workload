@@ -15,6 +15,18 @@
         padding-top:30px;
         padding-bottom:30px;
     }
+	#view-panel.collapsed {
+  margin-left: 50px;
+  transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+  width: 90%;
+}
+
+/* Adjust content width when the sidebar is collapsed */
+#sidebar.collapsed{
+
+    transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+    width: 5% !important;
+}
 </style>
 
 <div class="container-fluid">

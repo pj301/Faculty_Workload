@@ -1,12 +1,17 @@
 <meta content="" name="descriptison">
   <meta content="" name="keywords">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link rel="stylesheet" href="admin/assets/font-awesome/css/all.min.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="    https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
   <!-- Vendor CSS Files -->
   <link href="admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

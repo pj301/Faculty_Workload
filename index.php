@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>School Faculty Scheduling System</title>
+  <title>School Faculty Workload System</title>
  	
 
 <?php
@@ -57,11 +57,36 @@
     max-height: calc(100%);
     max-width: calc(100%);
   }
+  #calendar {
+    max-width: 70%; /* Set the maximum width of the calendar */
+    margin: auto; /* Center the calendar */
+    
+}
+.container-fluid{
+        padding-bottom:30px;
+		padding-top: 10px;
+    padding-left: 50px;
+    }
+    
+/* Adjust content width when the sidebar is collapsed */
+#view-panel.collapsed {
+  margin-left: 50px;
+  transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+  width: 100%;
+}
+
+/* Adjust content width when the sidebar is collapsed */
+#sidebar.collapsed{
+
+    transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+    width: 5% !important;
+}
 
 </style>
 
 <body>
-	<?php include 'topbar.php' ?>
+	<?php include 'topbar-faculty.php' ?>
+  <?php include 'navbar.php' ?>
   <div class="toast" id="alert_toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-body text-white">
     </div>

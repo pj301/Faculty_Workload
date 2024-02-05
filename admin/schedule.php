@@ -43,11 +43,12 @@
 </div>
 <style>
 	#calendar {
-    max-width: 70%; /* Set the maximum width of the calendar */
+    max-width: 100%; /* Set the maximum width of the calendar */
     margin: auto; /* Center the calendar */
 }
 .container-fluid{
         padding-bottom:30px;
+		padding-top: 10px;
     }
 	td{
 		vertical-align: middle !important;
@@ -90,6 +91,21 @@ a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end.fc-
 a.fc-timegrid-event.fc-v-event.fc-event.fc-event-start.fc-event-end.fc-event-past {
     cursor: pointer;
 }
+
+/* Adjust content width when the sidebar is collapsed */
+#view-panel.collapsed {
+  margin-left: 50px;
+  transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+  width: 100%;
+}
+
+/* Adjust content width when the sidebar is collapsed */
+#sidebar.collapsed{
+
+    transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+    width: 5% !important;
+}
+
 </style>
 <script>
 	

@@ -1,60 +1,84 @@
 <?php include 'db_connect.php' ?>
 <style>
-   span.float-right.summary_icon {
+ span.float-right.summary_icon {
     font-size: 3rem;
     position: absolute;
     right: 1rem;
     color: #ffffff96;
 }
-.imgs{
-		margin: .5em;
-		max-width: calc(100%);
-		max-height: calc(100%);
-	}
-	.imgs img{
-		max-width: calc(100%);
-		max-height: calc(100%);
-		cursor: pointer;
-	}
-	#imagesCarousel,#imagesCarousel .carousel-inner,#imagesCarousel .carousel-item{
-		height: 60vh !important;background: black;
-	}
-	#imagesCarousel .carousel-item.active{
-		display: flex !important;
-	}
-	#imagesCarousel .carousel-item-next{
-		display: flex !important;
-	}
-	#imagesCarousel .carousel-item img{
-		margin: auto;
-	}
-	#imagesCarousel img{
-		width: auto!important;
-		height: auto!important;
-		max-height: calc(100%)!important;
-		max-width: calc(100%)!important;
-	}
 
-    *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+.imgs {
+    margin: .5em;
+    max-width: calc(100%);
+    max-height: calc(100%);
 }
-/* Style the left side (70%) */
+
+.imgs img {
+    max-width: calc(100%);
+    max-height: calc(100%);
+    cursor: pointer;
+}
+
+#imagesCarousel,
+#imagesCarousel .carousel-inner,
+#imagesCarousel .carousel-item {
+    height: 60vh !important;
+    background: black;
+}
+
+#imagesCarousel .carousel-item.active {
+    display: flex !important;
+}
+
+#imagesCarousel .carousel-item-next {
+    display: flex !important;
+}
+
+#imagesCarousel .carousel-item img {
+    margin: auto;
+}
+
+#imagesCarousel img {
+    width: auto !important;
+    height: auto !important;
+    max-height: calc(100%) !important;
+    max-width: calc(100%) !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
 .body-container {
-  display: flex;
-  flex-direction: column;
-  width: 70%; /* Updated to 70% */
-  padding: 10px;
-  margin-left:-15px;    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-/* Style the right side (30%) */
-.sidebar-container {
-  width: 30%;
-  padding: 10px;
+.left-container {
+    width: 100%; /* Updated to 100% */
 }
+
+.right-container {
+    width: 100%; /* Updated to 100% */
+    background-color: #f2f2f2;
+    padding: 10px;
+    height: 100%;
+}
+
+/* Rest of your styles remain unchanged */
+
+/* Rest of your styles remain unchanged */
 
 /* Style the individual sections */
 .facultyloadTable-container,
@@ -64,7 +88,6 @@
   border: 1px solid #ddd; /* Add border as needed */
   padding: 10px;
   margin-bottom: 10px;
-  width: 100%; /* Set width to 100% */
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
@@ -74,7 +97,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px; /* Set the desired space between cards */
-   max-width: 50%;
+   max-width: 100%;
    padding-top: 30px;
   margin-left: 30px;
   transition: margin-left 0.5s ease; /* Add smooth transition */
@@ -88,8 +111,8 @@
 }
 
 .Card {
-  width: 150px;
-  height: 180px; /* Set the height for a box size */
+  width: 180px;
+  height: 200px; /* Set the height for a box size */
   background-color: rgba(52, 152, 219, 0.7); /* Transparent blue color, adjust as needed */
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -184,14 +207,10 @@
   background-color: gray;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 15px; /* Set the desired space between cards */
-  max-width: 100%; /* Set to 70% */
   margin-top: 40px;
   transition: max-width 0.5s ease; /* Add smooth transition */
 
-  /* Center the container within the left-container */
-  margin-left: auto;
-  margin-right: auto;
+
 }
 
 .collegeTable-container {
@@ -199,14 +218,11 @@
   background-color: gray;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 15px; /* Set the desired space between cards */
-  max-width: 100%; /* Set to 70% */
   margin-top: 40px;
   transition: max-width 0.5s ease; /* Add smooth transition */
 
   /* Center the container within the left-container */
-  margin-left: auto;
-  margin-right: auto;
+
 }
 
 .facultyloadTable-container {
@@ -214,14 +230,9 @@
   background-color: gray;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 15px; /* Set the desired space between cards */
-  max-width: 100%; /* Set to 70% */
   margin-top: 40px;
   transition: max-width 0.5s ease; /* Add smooth transition */
 
-  /* Center the container within the left-container */
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Add this CSS to your stylesheet or in a <style> tag in your HTML */
@@ -244,19 +255,19 @@
 }
   /* Style the container */
   .slider-container {
-      position: relative;
-      width: 70%;
-      height: 20vh;  
-      margin-left: -40px;
-      overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 20vh;
+  margin-left: 0 auto; /* Adjust margin as needed */
+  overflow: hidden;
+}
 
-    }
+.image-container {
+  display: flex;
+  margin-left: 0; /* Adjust margin as needed */
+  transition: transform 0.5s ease-in-out;
+}
 
-    /* Style the image container */
-    .image-container {
-      display: flex;
-      transition: transform 0.5s ease-in-out; /* Add smooth transition for the sliding effect */
-    }
 
     /* Style the image */
     .image-container img {
@@ -277,74 +288,170 @@
       text-align: center;
       z-index: 2; /* Place the overlay text container above the image container */
     }
+    .summary_icon {
+  color: #00f020;
+  font-size: 25px;
+  font-weight: bold;
+  border: 2px solid #00f020; /* Border color */
+  border-radius: 50%; /* Make it circular */
+  padding: 5px; /* Adjust padding for spacing */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a shadow effect for a 3D look */
+}
  
 </style>
+<style>
+    /* Your existing styles */
 
-<div class="container-fluid">
-	<div class="row mt-3 ml-3 mr-3">
-        <div class="col-lg-12">
+    /* Media query for small screens */
+    @media (max-width: 576px) {
+        .cards-container {
+            grid-template-columns: 1fr; /* Change to a single column layout for small screens */
+            gap: 20px; /* Adjust the gap as needed */
+        }
 
-        <div class="slider-container">
-            <div class="overlay-container">Welcome back <?php echo $_SESSION['login_name']; ?>!</div>
-            <div class="image-container">
-                
-                <img src="../admin/assets/img/picture.jpg" alt="Slide 1">
-            
-                <img src="../admin/assets/img/picture.jpg" alt="Slide 2">
-          </div>
-          <div class="swiper-button-next">&rarr;</div>
-            <div class="swiper-button-prev">&larr;</div>
+        .Card {
+            width: 100%; /* Make each card take the full width */
+        }
+    }
+
+    /* Media query for medium screens */
+    @media (min-width: 577px) and (max-width: 992px) {
+        .cards-container {
+            grid-template-columns: repeat(2, 1fr); /* Change to a two-column layout for medium screens */
+            gap: 30px; /* Adjust the gap as needed */
+        }
+
+        .Card {
+            width: calc(50% - 15px); /* Adjust the width and margin as needed */
+        }
+    }
+
+    /* Media query for large screens */
+    @media (min-width: 1000x) {
+        .cards-container {
+            grid-template-columns: repeat(3, 1fr); /* Keep the three-column layout for large screens */
+            gap: 40px; /* Adjust the gap as needed */
+        }
+
+        .Card {
+            width: calc(100%); /* Adjust the width and margin as needed */
+        }
+    }
+     
+
+
+/* Adjust content width when the sidebar is collapsed */
+/* Adjust content width when the sidebar is collapsed */
+#view-panel.collapsed {
+  margin-left: 50px;
+  transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+  width: 100%;
+}
+
+/* Adjust content width when the sidebar is collapsed */
+#sidebar.collapsed{
+
+    transition: margin-left 0.3s ease; /* Add transition for smooth width change */
+    width: 5% !important;
+}
+
+
+
+</style>
+
+<div class="container">
+        <div class="left-container">
+            <div class="container-fluid">
+                <div class="row mt-3 ml-3 mr-3">
+                    <div class="col-lg-12">
+
+                        <!-- Your existing left container content goes here -->
+
+                        <!-- Slider Container -->
+                        <div class="slider-container">
+                            <!-- ... Your slider content ... -->
+                            <div class="overlay-container">Welcome back <?php echo $_SESSION['login_name']; ?>!</div>
+                        <div class="image-container">
+                            <img src="../admin/assets/img/picture.jpg" alt="Slide 1">
+                            <img src="../admin/assets/img/picture.jpg" alt="Slide 2">
+                        </div>
+                        <div class="swiper-button-next">&rarr;</div>
+                        <div class="swiper-button-prev">&larr;</div>
+                        </div>
+
+                        <!-- Cards Container -->
+                        <div class="cards-container">
+                            <!-- ... Your card content ... -->
+                            <div class="Card">
+                            <a href="">
+                                <img src="../admin/assets/images/menu-unscreen.gif" alt="">
+                                <div class="Category">TOTAL SUBJECT</div>
+                            </a>
+                        </div>
+                        <div class="Card">
+                            <a href="">
+                                <img src="../admin/assets/images/mortarboard-unscreen.gif" alt="">
+                                <div class="Category">TOTAL COLLEGE</div>
+                            </a>
+                        </div>
+                        <?php
+                        // Function to get the total number of rooms
+                        function getTotalRooms() {
+                            global $conn; // Assuming $conn is your database connection variable
+
+                            // Query to get the count of rooms from the 'roomlist' table
+                            $query = "SELECT COUNT(*) as total_rooms FROM room";
+
+                            // Execute the query
+                            $result = mysqli_query($conn, $query);
+
+                            // Check if the query was successful
+                            if ($result) {
+                                $row = mysqli_fetch_assoc($result);
+                                return $row['total_rooms'];
+                            } else {
+                                return "Error fetching total rooms: " . mysqli_error($conn);
+                            }
+                        }
+
+                        // Call the function to get the total number of rooms
+                        $totalRooms = getTotalRooms();
+                        ?>
+                        <div class="Card">
+                            <a href="#">
+                                <img src="../admin/assets/images/school-unscreen.gif" alt="">
+                                <div class="Category">TOTAL ROOM</div>
+                                <span class="float-center summary_icon"><?php echo $totalRooms; ?></span>
+                            </a>
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Container -->
+            <div class="body-container">
+                <div class="facultyloadTable-container">
+                    <a>FACULTY WORKLOAD HERE</a>
+                </div>
+                <div class="subjectTable-container">
+                    <a>SUBJECT TABLE HERE</a>
+                </div>
+                <div class="collegeTable-container">
+                    <a>COLLEGE TABLE HERE</a>
+                </div>
+            </div>
         </div>
-      
-                <!-- Your existing left container content -->
-                <div class="cards-container">
-                <div class="Card">
-                        <a href="">
-                            <img src="../admin/assets/images/menu-unscreen.gif" alt="">
-                            <div class="Category">TOTAL SUBJECT</div>
-                        </a>
-                    </div>
 
-                    <div class="Card">
-                        <a href="">
-                            <img src="../admin/assets/images/mortarboard-unscreen.gif" alt="">
-                            <div class="Category">TOTAL COLLEGE</div>
-                        </a>
-                    </div>
-
-                    <div class="Card">
-                        <a href="">
-                            <img src="../admin/assets/images/school-unscreen.gif" alt="">
-                            <div class="Category">TOTAL ROOM</div>
-                        </a>
-                    </div>
-                </div>   		
-                
-            </div>   
-          	
+        <!-- Right Container -->
+        <div class="right-container">
+            <!-- Additional content for the right container goes here -->
         </div>
-    </div>
-   
-  <div class="container">
-    <div class="body-container">
-      <div class="facultyloadTable-container">
-        <a>FACULTY WORKLOAD HERE</a>
-      </div>
-      <div class="subjectTable-container">
-        <a>SUBJECT TABLE HERE</a>
-      </div>
-      <div class="collegeTable-container">
-        <a>COLLEGE TABLE HERE</a>
-      </div>
-    </div>
-    <div class="sidebar-container">
-      <!-- Additional content for the right sidebar if needed -->
-    </div>
-  </div>
 
-</div>
+    </div>
 
-</div>
+
 
 <script>
 	$('#manage-records').submit(function(e){
