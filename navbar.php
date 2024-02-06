@@ -269,36 +269,14 @@
     </div>
        
     <div class="sidebar-list">
-    <a href="index.php?page=home" class="nav-item nav-home" data-text="Dashboard">
-    <span class='icon-field'><i class="fa fa-home"></i></span>Dashboard
-</a>
-<!-- Other anchor tags with data-text attribute -->
-
-
+   
         <!-- Manage Workload with Collapsible List -->
-        <a href="javascript:void(0);" class="nav-item nav-schedule collapse-icon "data-text="Manage Workload " onclick="toggleCollapse('manageWorkloadCollapse')">
-        <span class='icon-field'><i class="fa fa-tasks"></i></span> Manage Workload
-            <i class="fa fa-caret-down"></i>		
-        </a>
-        <div class="collapse" id="manageWorkloadCollapse">
-            <a href="index.php?page=colleges" class="nav-item nav-colleges"data-text="College">
-                <span class='icon-field'><i class="fa fa-suitcase"></i></span> College
-            </a>
-
-            <a href="index.php?page=faculty" class="nav-item nav-faculty"data-text="Faculty List">
-                <span class='icon-field'><i class="fa fa-user-tie"></i></span> Faculty List
-            </a>
-            <a href="index.php?page=roomlist" class="nav-item nav-roomlist"data-text="Room">
-                <span class='icon-field'><i class="fa fa-building"></i></span> Room
-            </a>
-        </div>
-
-        <a href="index.php?page=schedule" class="nav-item nav-schedule"data-text="Schedule">
-            <span class='icon-field'><i class="fa fa-calendar-day"></i></span> Schedule
+        <a href="index.php?page=faculty_home" class="nav-item nav-faculty_home"data-text="Users">
+            <span class='icon-field'><i class="fa fa-calendar"></i></span> view_schedule
         </a>
 
-        <a href="index.php?page=users" class="nav-item nav-users"data-text="Users">
-            <span class='icon-field'><i class="fa fa-users"></i></span> Users
+        <a href="index.php?page=site_settings" class="nav-item nav-site_settings"data-text="Users">
+            <span class='icon-field'><i class="fa fa-users"></i></span> Adjustment Request
         </a>
     
     </div>

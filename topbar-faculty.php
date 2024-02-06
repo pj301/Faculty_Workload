@@ -24,6 +24,7 @@
   align-items: center;
   padding: 0px 10px 5px 10px;
   background-color: #213440;
+  padding-left: 150px;
 }
 
 .logo-details {
@@ -170,7 +171,7 @@
 <header class="header">
         <!-- Header content goes here -->
         <div class="logo-details">
-                <img src="../admin/assets/images/logo.png" alt="">
+                <img src="admin/assets/images/logo.png" alt="">
                  <span class="logo_name">FACULTY WORKLOAD</span>
                </div>
                <div class="date-time" id="date-time"></div>
@@ -190,8 +191,7 @@
                 <div class="dropdown mr-4">
     <a href="#" class="text-white dropdown-toggle" id="account_settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['login_name'] ?></a>
     <div class="dropdown-menu" aria-labelledby="account_settings" style="left: -2.5em; background-color: #213440;">
-        <a class="dropdown-item" href="javascript:void(0)" id="manage_my_account"><i class="fa fa-cog"></i> Manage Account</a>
-        <a class="dropdown-item" href="ajax.php?action=logout"><i class="fa fa-power-off"></i> Logout</a>
+        <a class="dropdown-item" href="ajax.php?action=logout2"><i class="fa fa-power-off"></i> Logout</a>
     </div>
 </div>
 

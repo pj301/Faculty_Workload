@@ -9,6 +9,9 @@
         background: #213440 !important; /* Set the background color */
         padding-top: 30px;
         transition: width 0.4 ease;
+        /* margin-top:50px; */
+          margin-top:20px;
+        width: 15%;
     }
 
     nav#sidebar .sidebar-list a {
@@ -276,7 +279,7 @@
 
 
         <!-- Manage Workload with Collapsible List -->
-        <a href="javascript:void(0);" class="nav-item nav-schedule collapse-icon "data-text="Manage Workload " onclick="toggleCollapse('manageWorkloadCollapse')">
+        <a href="javascript:void(0);" class="nav-item nav-manage-workload collapse-icon "data-text="Manage Workload " onclick="toggleCollapse('manageWorkloadCollapse')">
         <span class='icon-field'><i class="fa fa-tasks"></i></span> Manage Workload
             <i class="fa fa-caret-down"></i>		
         </a>
@@ -300,7 +303,9 @@
         <a href="index.php?page=users" class="nav-item nav-users"data-text="Users">
             <span class='icon-field'><i class="fa fa-users"></i></span> Users
         </a>
-    
+        <a href="index.php?page=site_settings" class="nav-item nav-site_settings"data-text="request">
+            <span class='icon-field'><i class="fa fa-check"></i></span> Workload Request
+        </a>
     </div>
 </nav>
 

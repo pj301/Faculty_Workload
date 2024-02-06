@@ -49,6 +49,7 @@
 .container-fluid{
         padding-bottom:30px;
 		padding-top: 10px;
+		width:90%;
     }
 	td{
 		vertical-align: middle !important;
@@ -105,7 +106,9 @@ a.fc-timegrid-event.fc-v-event.fc-event.fc-event-start.fc-event-end.fc-event-pas
     transition: margin-left 0.3s ease; /* Add transition for smooth width change */
     width: 5% !important;
 }
-
+.card{
+        margin-top: 50px;
+    }
 </style>
 <script>
 	

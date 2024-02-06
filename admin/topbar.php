@@ -64,7 +64,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   overflow: hidden;
-  margin-left: 300px;
+  margin-left: 1300px;
      position: absolute;
      left: 400px;
      height: 50px;

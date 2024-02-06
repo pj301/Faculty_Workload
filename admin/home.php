@@ -53,27 +53,38 @@
 }
 
 .container {
-    max-width: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 10px;
 }
 
 .body-container {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-left: 30px;
 }
 
 .left-container {
-    width: 100%; /* Updated to 100% */
+    width: 120%; /* Updated to 200% */
+   /* transform: translateX(-400px); */
+     transform: translateX(-50px); 
+ 
 }
 
 .right-container {
-    width: 100%; /* Updated to 100% */
+  background:#213440 !important;
+  border: 2px solid;
+  /* transform: translateX(370px); */
+   transform: translateX(70px);
     background-color: #f2f2f2;
-    padding: 10px;
+    /* width: 160%; */
+    width: 100%;
     height: 100%;
+    /* margin-top: 80px; */
+  margin-top: 15px;
+
 }
 
 /* Rest of your styles remain unchanged */
@@ -237,11 +248,12 @@
 
 /* Add this CSS to your stylesheet or in a <style> tag in your HTML */
 .swiper-button-next, .swiper-button-prev {
+    
     position: absolute;
-      top: 50%;
-      transform: translateY(-10%);
+      top: 30%;
+      transform: translateY(50%);
       font-size: 24px;
-      color: blue;
+      color: white;
       cursor: pointer;
       z-index: 3; /* Place the arrow buttons above the overlay text container */
 }
@@ -271,7 +283,7 @@
 
     /* Style the image */
     .image-container img {
-      width: 100%;
+      width: 150px;
       height: 50%;
       display: block;
     }
@@ -343,7 +355,7 @@
 /* Adjust content width when the sidebar is collapsed */
 /* Adjust content width when the sidebar is collapsed */
 #view-panel.collapsed {
-  margin-left: 50px;
+  margin-left: 90px;
   transition: margin-left 0.3s ease; /* Add transition for smooth width change */
   width: 100%;
 }
@@ -372,8 +384,10 @@
                             <!-- ... Your slider content ... -->
                             <div class="overlay-container">Welcome back <?php echo $_SESSION['login_name']; ?>!</div>
                         <div class="image-container">
-                            <img src="../admin/assets/img/picture.jpg" alt="Slide 1">
-                            <img src="../admin/assets/img/picture.jpg" alt="Slide 2">
+                        <img src="../admin/assets/img/image3.jpg" alt="Slide 3"style="width: 150%;">
+                            <img src="../admin/assets/img/image3.jpg" alt="Slide 3"style="width: 150%;">
+                            <img src="../admin/assets/img/image3.jpg" alt="Slide 3"style="width: 150%;">
+                          
                         </div>
                         <div class="swiper-button-next">&rarr;</div>
                         <div class="swiper-button-prev">&larr;</div>

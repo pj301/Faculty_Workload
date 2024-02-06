@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include 'admin/db_connect.php';
 $qry = $conn->query("SELECT * from system_settings limit 1");
 if($qry->num_rows > 0){
 	foreach($qry->fetch_array() as $k => $val){
@@ -13,28 +13,24 @@ if($qry->num_rows > 0){
 		<div class="card-body">
 			<form action="" id="manage-settings">
 				<div class="form-group">
-					<label for="name" class="control-label">System Name</label>
-					<input type="text" class="form-control" id="name" name="name" value="<?php echo isset($meta['name']) ? $meta['name'] : '' ?>" required>
+					<label for="name" class="control-label">Faculty Name</label>
+					<input type="text" class="form-control" id="name" name="name" value="" required>
 				</div>
 				<div class="form-group">
 					<label for="email" class="control-label">Email</label>
-					<input type="email" class="form-control" id="email" name="email" value="<?php echo isset($meta['email']) ? $meta['email'] : '' ?>" required>
+					<input type="email" class="form-control" id="email" name="email" value="" required>
 				</div>
 				<div class="form-group">
-					<label for="contact" class="control-label">Contact</label>
-					<input type="text" class="form-control" id="contact" name="contact" value="<?php echo isset($meta['contact']) ? $meta['contact'] : '' ?>" required>
-				</div>
-				<div class="form-group">
-					<label for="about" class="control-label">About Content</label>
-					<textarea name="about" class="text-jqte"><?php echo isset($meta['about_content']) ? $meta['about_content'] : '' ?></textarea>
+					<label for="about" class="control-label">Describe your workload concern:</label>
+					<textarea name="about" class="text-jqte"></textarea>
 
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label">Image</label>
+					<label for="" class="control-label">Attach Screenshots or Image Here:</label>
 					<input type="file" class="form-control" name="img" onchange="displayImg(this,$(this))">
 				</div>
 				<div class="form-group">
-					<img src="<?php echo isset($meta['cover_img']) ? 'assets/uploads/'.$meta['cover_img'] :'' ?>" alt="" id="cimg">
+					<img src="" alt="" id="cimg">
 				</div>
 				<center>
 					<button class="btn btn-info btn-primary btn-block col-md-2">Save</button>
@@ -48,14 +44,15 @@ if($qry->num_rows > 0){
 		max-width: 6vw;
 	}
 	.container-fluid {
-        padding-top: 30px;
         padding-bottom: 30px;
       
         padding-bottom:30px;
-		padding-top: 100px;
+		padding-top: 50px;
 		width:90%;
+		height: 50%;
 
     }
+	
 </style>
 
 <script>

@@ -8,6 +8,7 @@ if(isset($_GET['id'])){
 }
 
 ?>
+
 <div class="container-fluid">
 	<p>Schedule for: <b><?php echo ucwords($title) ?></b></p>
 	<p>Description: <b><?php echo $description ?></b></p>

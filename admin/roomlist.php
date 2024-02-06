@@ -18,21 +18,24 @@ $rooms = $conn->query("SELECT * FROM room ORDER BY roomCode ASC");
     .container-fluid {
         padding-top: 30px;
         padding-bottom: 30px;
+      
+        padding-bottom:30px;
+		padding-top: 100px;
+		width:90%;
+
     }
+    
 </style>
 
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-lg-12">
-            <button class="btn btn-primary float-right btn-sm" id="new_room"><i class="fa fa-plus"></i> New Room</button>
-        </div>
-    </div>
     <br>
-    <div class="row">
+    <div class="row"> 
         <div class="card col-lg-12">
             <div class="card-body">
-                <h2 class="text-center mb-4">Room Table</h2> <!-- Added Table Title -->
+            <div class="col-lg-12">
+            <button class="btn btn-primary float-right btn-sm" id="new_room"><i class="fa fa-plus"></i> New Room</button>
+        </div>
+                <h2 class="text-center mb-4">Room List</h2> <!-- Added Table Title -->
                 <table class="table-striped table-bordered col-md-12">
                     <thead>
                         <tr>

@@ -15,73 +15,75 @@ Class Action {
 	    ob_end_flush();
 	}
 
+	
 	function login(){
 		
-			extract($_POST);		
-			$qry = $this->db->query("SELECT * FROM users where username = '".$username."' and password = '".md5($password)."' ");
-			if($qry->num_rows > 0){
-				foreach ($qry->fetch_array() as $key => $value) {
-					if($key != 'password' && !is_numeric($key))
-						$_SESSION['login_'.$key] = $value;
-				}
-				if($_SESSION['login_type'] != 1){
-					foreach ($_SESSION as $key => $value) {
-						unset($_SESSION[$key]);
-					}
-					return 2 ;
-					exit;
-				}
-					return 1;
-			}else{
-				return 3;
-			}
-	}
-	function login_faculty(){
-		
 		extract($_POST);		
-		$qry = $this->db->query("SELECT *,concat(lastname,', ',firstname,' ',middlename) as name FROM faculty where id_no = '".$id_no."' ");
+		$qry = $this->db->query("SELECT * FROM users where username = '".$username."' and password = '".md5($password)."' ");
 		if($qry->num_rows > 0){
 			foreach ($qry->fetch_array() as $key => $value) {
 				if($key != 'password' && !is_numeric($key))
 					$_SESSION['login_'.$key] = $value;
 			}
-			return 1;
-		}else{
-			return 3;
-		}
-}
-	function login2(){
-		
-			extract($_POST);
-			if(isset($email))
-				$username = $email;
-		$qry = $this->db->query("SELECT * FROM users where username = '".$username."' and password = '".md5($password)."' ");
-		if($qry->num_rows > 0){
-			foreach ($qry->fetch_array() as $key => $value) {
-				if($key != 'passwors' && !is_numeric($key))
-					$_SESSION['login_'.$key] = $value;
-			}
-			if($_SESSION['login_alumnus_id'] > 0){
-				$bio = $this->db->query("SELECT * FROM alumnus_bio where id = ".$_SESSION['login_alumnus_id']);
-				if($bio->num_rows > 0){
-					foreach ($bio->fetch_array() as $key => $value) {
-						if($key != 'passwors' && !is_numeric($key))
-							$_SESSION['bio'][$key] = $value;
-					}
+			if($_SESSION['login_type'] != 1){
+				foreach ($_SESSION as $key => $value) {
+					unset($_SESSION[$key]);
 				}
+				return 2 ;
+				exit;
 			}
-			if($_SESSION['bio']['status'] != 1){
-					foreach ($_SESSION as $key => $value) {
-						unset($_SESSION[$key]);
-					}
-					return 2 ;
-					exit;
-				}
 				return 1;
 		}else{
 			return 3;
 		}
+}
+function login_faculty(){
+	
+	extract($_POST);		
+	$qry = $this->db->query("SELECT *,concat(lastname,', ',firstname,' ',middlename) as name FROM faculty where id_no = '".$id_no."' ");
+	if($qry->num_rows > 0){
+		foreach ($qry->fetch_array() as $key => $value) {
+			if($key != 'password' && !is_numeric($key))
+				$_SESSION['login_'.$key] = $value;
+		}
+		return 1;
+	}else{
+		return 3;
 	}
+}
+function login2(){
+	
+		extract($_POST);
+		if(isset($email))
+			$username = $email;
+	$qry = $this->db->query("SELECT * FROM users where username = '".$username."' and password = '".md5($password)."' ");
+	if($qry->num_rows > 0){
+		foreach ($qry->fetch_array() as $key => $value) {
+			if($key != 'password' && !is_numeric($key))
+				$_SESSION['login_'.$key] = $value;
+		}
+		if($_SESSION['login_alumnus_id'] > 0){
+			$bio = $this->db->query("SELECT * FROM alumnus_bio where id = ".$_SESSION['login_alumnus_id']);
+			if($bio->num_rows > 0){
+				foreach ($bio->fetch_array() as $key => $value) {
+					if($key != 'password' && !is_numeric($key))
+						$_SESSION['bio'][$key] = $value;
+				}
+			}
+		}
+		if($_SESSION['bio']['status'] != 1){
+				foreach ($_SESSION as $key => $value) {
+					unset($_SESSION[$key]);
+				}
+				return 2 ;
+				exit;
+			}
+			return 1;
+	}else{
+		return 3;
+	}
+}
+
 	function logout(){
 		session_destroy();
 		foreach ($_SESSION as $key => $value) {
@@ -97,30 +99,41 @@ Class Action {
 		header("location:../index.php");
 	}
 
-	function save_user(){
+	function save_user() {
 		extract($_POST);
-		$data = " name = '$name' ";
+		$username = trim($username);
+	
+		$data = "name = '$name' ";
 		$data .= ", username = '$username' ";
-		if(!empty($password))
-		$data .= ", password = '".md5($password)."' ";
+	
+		if (!empty($password)) {
+			$data .= ", password = '".md5($password)."' ";
+		}
+	
 		$data .= ", type = '$type' ";
-		if($type == 1)
+	
+		if ($type == 1) {
 			$establishment_id = 0;
+		}
+	
 		$data .= ", establishment_id = '$establishment_id' ";
-		$chk = $this->db->query("Select * from users where username = '$username' and id !='$id' ")->num_rows;
-		if($chk > 0){
-			return 2;
-			exit;
+	
+		$chk = $this->db->query("SELECT * FROM users WHERE username = '$username' AND id != '$id'")->num_rows;
+		if ($chk > 0) {
+			return 2; // Username already exists
 		}
-		if(empty($id)){
-			$save = $this->db->query("INSERT INTO users set ".$data);
-		}else{
-			$save = $this->db->query("UPDATE users set ".$data." where id = ".$id);
+	
+		if (empty($id)) {
+			$save = $this->db->query("INSERT INTO users SET ".$data);
+		} else {
+			$save = $this->db->query("UPDATE users SET ".$data." WHERE id = ".$id);
 		}
-		if($save){
-			return 1;
+	
+		if ($save) {
+			return 1; // Success
 		}
 	}
+	
 	function delete_user(){
 		extract($_POST);
 		$delete = $this->db->query("DELETE FROM users where id = ".$id);

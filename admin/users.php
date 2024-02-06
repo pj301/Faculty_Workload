@@ -27,19 +27,36 @@
     transition: margin-left 0.3s ease; /* Add transition for smooth width change */
     width: 5% !important;
 }
+.card{
+        margin-top: 50px;
+		/* height: 50vh; */
+		height: 60vh;
+    }
+	.container-fluid {
+        padding-top: 30px;
+        padding-bottom: 30px;
+      
+        padding-bottom:30px;
+		padding-top: 100px;
+		width:90%;
+
+    }
 </style>
 
 <div class="container-fluid">
 	
 	<div class="row">
-	<div class="col-lg-12">
-			<button class="btn btn-primary float-right btn-sm" id="new_user"><i class="fa fa-plus"></i> New user</button>
-	</div>
+
 	</div>
 	<br>
 	<div class="row">
 		<div class="card col-lg-12">
 			<div class="card-body">
+			<div class="col-lg-12">
+			<button class="btn btn-primary float-right btn-sm" id="new_user"><i class="fa fa-plus"></i> New user</button>
+	</div>
+			<h2 class="text-center mb-4">User</h2>
+			
 				<table class="table-striped table-bordered col-md-12">
 			<thead>
 				<tr>

@@ -26,10 +26,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <b>Colleges</b>
+                   
                         <span class="">
                             <button class="btn btn-primary btn-block btn-sm col-sm-2 float-right" type="button" id="new_college">
                                 <i class="fa fa-plus"></i> New</button>
+                                 <h2 class="text-center mb-4">College List</h2>
                         </span>
                     </div>
                     <div class="card-body">
@@ -88,6 +89,22 @@
     img {
         max-width: 200px;
         max-height: :150px;
+    }
+    .card{
+        /* margin-top: 50px; */
+        margin-top:10px;
+		/* height: 50vh; */
+        height: 80vh;
+    }
+	.container-fluid {
+        padding-top: 30px;
+        padding-bottom: 30px;
+      
+        padding-bottom:30px;
+		padding-top: 100px;
+ 
+		width:90%;
+
     }
 </style>
 <script>
